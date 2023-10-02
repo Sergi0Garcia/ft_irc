@@ -12,3 +12,6 @@ Download Client (KVIRC)
 Run server with Valgrind && Docker
 - docker build -t irc .
 - docker run -p 6667:6667 irc
+
+![alt text](./img/img1.png)
+![alt text](./img/img2.png)
