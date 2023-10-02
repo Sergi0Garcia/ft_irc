@@ -1,6 +1,6 @@
 # Ft_IRC
 
-IRC (Internet Relay Chat) server =
+IRC (Internet Relay Chat) server
 
 Run server
 - make
