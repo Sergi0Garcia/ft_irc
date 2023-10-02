@@ -1,30 +1,23 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: segarcia <segarcia@student.42wolfsburg.    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/04 09:59:27 by segarcia          #+#    #+#              #
-#    Updated: 2023/07/31 09:52:09 by segarcia         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME			= ircserv
 
-NAME		= ircserv
-	
-CC			= c++
-RM			= rm -rf
-FLAGS		= -Wall -Wextra -Werror -std=c++98
+CC				= c++
+RM				= rm -rf
+FLAGS			= -Wall -Wextra -Werror -std=c++98 -g
+
+SRCPATH 	= ./src
+INCLPATH 	= ./incl
 
 OBJDIR 		= .obj
-FILES		= main
-SRC			= $(FILES:=.cpp)
-OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
-HEADERS	= 
- 
-RED			= 	\e[31m
-GREEN		=	\e[92;5;118m
-RESET		=	\e[0m
+FILES			= main Utils Server ServerUtils Client Request Messages Response Channel Bot
+INCLUDES  = Utils Server Client Request
+
+SRC 			= $(addprefix $(SRCPATH)/, $(addsuffix .cpp, $(FILES)))
+OBJ				= $(addprefix $(OBJDIR)/, $(FILES:=.o))
+HEADERS		= $(addprefix $(INCLPATH)/, $(addsuffix .hpp, $(INCLUDES)))
+
+RED				= \e[31m
+GREEN			=	\e[92;5;118m
+RESET			=	\e[0m
 CURSIVE		=	\e[33;3m
 
 .PHONY: all clean fclean re bonus norm
@@ -35,7 +28,7 @@ $(NAME): $(OBJ) $(HEADERS)
 	@$(CC) $(OBJ) $(OPTS) -o $(NAME)
 	@printf "$(CURSIVE)$(GREEN)- Compiling ...\n$(RESET)"
 
-$(OBJDIR)/%.o: %.cpp $(HEADERS)
+$(OBJDIR)/%.o: $(SRCPATH)/%.cpp $(HEADERS)
 	@mkdir -p $(dir $@)
 	@$(CC) $(FLAGS) $(OPTS) -c $< -o $@
 
@@ -46,5 +39,6 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@printf "$(CURSIVE)$(RED)- Executable removed.$(RESET)\n"
-
+irc:
+	@printf "Check out this link to download IRC:\n$(GREEN)https://www.kvirc.net/?id=releases&platform=macosx&version=5.0.0&lang=en\n$(RESET)"
 re: fclean all
