@@ -4,7 +4,7 @@ IRC (Internet Relay Chat) server
 
 Run server
 - make
-- usage: "./ircserv <port> <password>"
+- ./ircserv <port> <password>
 
 Download Client (KVIRC)
 - make irc
